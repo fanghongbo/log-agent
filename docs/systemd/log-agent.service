@@ -1,0 +1,13 @@
+[Unit]
+Description=Log Agent Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Restart=on-failure
+RestartSec=5s
+ExecStart=/usr/local/log-agent/bin/log-agent -c /usr/local/log-agent/config/app.json
+
+[Install]
+WantedBy=multi-user.target

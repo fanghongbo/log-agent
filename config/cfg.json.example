@@ -1,0 +1,34 @@
+{
+  "hostname": "",
+  "endpoint": "http://oss-cn-shenzhen.aliyuncs.com",
+  "accessKey": "xx",
+  "secretKey": "xxx",
+  "bucketName": "app-logstore",
+  "partSize": 102400,
+  "log": {
+    "path": "/tmp/oss/logs/",
+    "rotate": 3
+  },
+  "strategies": [
+    {
+      "src": "/tmp/logs/user/",
+      "dest": "/sunline/user/${hostname}/",
+      "pattern": "^\\d{4}-\\d{1,2}(.zip|/info-\\S+\\.log)$",
+      "exclude": "^\\d{4}-\\d{1,2}/info-\\S+\\.log$",
+      "forbidWrite": true,
+      "afterDelete": false,
+      "sign": "123456",
+      "spec": "*/5 * * * * *"
+    },
+    {
+      "src": "/tmp/logs/web-app/",
+      "dest": "/sunline/web-app/${hostname}/",
+      "pattern": "^\\d{4}-\\d{1,2}/",
+      "exclude": "",
+      "forbidWrite": true,
+      "afterDelete": true,
+      "sign": "123456",
+      "spec": "*/10 * * * * *"
+    }
+  ]
+}
