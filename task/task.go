@@ -90,6 +90,8 @@ func Start() {
 			controller.New(NewCallback(item.Src, item.Dest, item.Pattern, item.Exclude, item.ForbidWrite, item.AfterDelete, item.BeforeTime, item.Sign, item.Spec))
 		}
 
+		g.AppLog.Info("service start success")
+
 		controller.Listen()
 	}()
 }
